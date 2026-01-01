@@ -42,6 +42,7 @@ body {
     color: #333;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: #fafafa;
 }
 
 
@@ -49,8 +50,12 @@ body {
    NAVBAR / HEADER STYLES
    ========================================================================== */
 .nav-container {
-    display: flex;
-    justify-content: space-between;
+    display: flex; /* flex children in the nav-container line up horizontally */
+    justify-content: space-between; /* Logo on the left, menu on the right
+    
+    space-between: items are evenly distributed in the line; first item is on the start line, last item on the end line
+    
+    */
     align-items: center;
     background-color: #fff;
     padding: 1rem 1.5rem;
@@ -77,7 +82,10 @@ body {
     text-decoration: none;
     color: #333;
     font-weight: 500;
-    transition: color 0.3s;
+    transition: color 0.3s; /* Smooth color change on hover */
+
+    /* transition goes on the normal state, not the hover state because it defines how changes happen, not when they happen */
+
     font-size: 1.25rem;
 }
 
@@ -90,6 +98,9 @@ body {
     display: none; /* Hidden on desktop */
 }
 
+/* This creates and edit each hamburger line
+    Each span is one horizontal line of the hamburger
+*/
 .nav-toggle span {
     display: block;
     height: 3px;
@@ -101,19 +112,18 @@ body {
     margin: 3px 0; 
 }
 
-/* Hamburger to X Animation FIX */
+/* Hamburger to X Animation */
 .nav-toggle.open span:nth-child(1) {
-    /* Line 1: Move down 6px and rotate 45 deg */
     transform: rotate(45deg) translateY(11px);  
 }
 
 .nav-toggle.open span:nth-child(2) {
-    /* Line 2: Fade out */
+    /* Line 2: HIDE THE MIDDLE LINE */
     opacity: 0;
 }
 
 .nav-toggle.open span:nth-child(3) {
-    /* Line 3: Move up 6px and rotate -45 deg */
+    
     transform: rotate(-45deg) translateY(-11px); 
 }
 
@@ -239,16 +249,16 @@ body {
     border-radius: 4px;
 }
 
-.label {
+.index-label {
     color: #fff;
     font-weight: 500;
 }
 
-.label.frontend {
+.index-label.frontend {
     background: #0077ff;
 }
 
-.label.teaching {
+.index-label.teaching {
     background: #00a36c;
 }
 
@@ -394,17 +404,21 @@ body {
    PROJECT PAGE STYLES (e.g., taichungWalkable.html)
    ========================================================================== */
 .project-page {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 4rem 1.5rem 6rem;
 }
 
+/* HERO AND DESCRIPTION SECTION */
 .project-hero {
     margin-bottom: 3rem;
+    
+    border-bottom: 1px solid #acacac;
+    padding-bottom: 1rem;
 }
 
 .project-hero h1 {
-    font-size: 3rem;
+    font-size: 5rem;
     font-weight: 700;
     color: #222;
     margin-bottom: 0.5rem;
@@ -412,33 +426,72 @@ body {
 
 .project-subtitle {
     font-size: 1.25rem;
+    margin-top: 1rem;
     color: #666;
 }
 
-.project-meta {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-top: 1.5rem;
-    font-size: 0.95rem;
-    color: #555;
+.overview-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
 }
 
-.project-meta li {
-    background-color: #f0f0f0;
-    padding: 0.4rem 0.8rem;
-    border-radius: 4px;
+.overview-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
+
+.project-label {
+    color: #666;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.project-description {
+    grid-column: 1 / -1;
+    margin-top: 1rem;
+}
+
+.project-description-p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    line-height: 1.4;
+}
+
+.project-links{
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.project-links-btn{
+    padding: 0.5rem 1.2rem;
+    border: 1px solid #333;
+    background: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+    height: 50px;
+    width: 120px;
+    font-size: 1rem;
+}
+
+.project-links-btn:hover, .project-links-btn:active{
+    background: #0077ff;
+    color: #fff;
+    border-color: #0077ff;
+}
+
+/* =========================== */
 
 .project-section {
     margin-top: 6rem;
 }
 
 .project-section h2 {
-    font-size: 1.75rem;
+    font-size: 3rem;
     font-weight: 600;
-    margin-bottom: 1rem;
-    margin-top: 2rem;
     color: #222;
 }
 
@@ -449,18 +502,17 @@ body {
     color: #333;
 }
 
-.project-section p {
-    font-size: 1.05rem;
-    line-height: 1.8;
-    color: #444;
-    max-width: 720px;
+.project-section-description {
     margin-top: 2rem;
 }
 
-.project-links {
-    margin-top: 2rem;
-    padding-left: 1.2rem;
+.project-section p {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 1.25rem;
 }
+
 
 .project-links li {
     list-style: disc;
@@ -472,22 +524,30 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem;
-    border: solid red 1px; /* Placeholder/Debug Border */
+    margin-top: 3rem;
 }
 
 .tech-list li {
     list-style: none;
     background-color: #eaeaea;
-    padding: 0.4rem 0.8rem;
+    padding: 1rem 2rem;
     border-radius: 4px;
-    font-size: 0.9rem;
+    font-size: 1rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
 }
 
 .project-section img {
     width: 100%;
-    margin-top: 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    box-shadow: 
+        0 0 0 1px rgba(0,0,0,0.08),
+        0 12px 28px rgba(0,0,0,0.28);
+    margin-bottom: 3rem;
+    margin-top: 1.25rem;
+}
+
+.project-section figure img.image-with-alt {
+    margin-bottom: 0.5rem;
 }
 
 .project-section a {
@@ -512,6 +572,7 @@ body {
     height: 300px;
     border-radius: 8px;
     box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    object-fit: cover;
 }
 
 figure figcaption {
@@ -674,9 +735,9 @@ figure figcaption {
         font-size: 1.1rem; 
     }
 
-    .project-meta {
-        margin-top: 1rem;
-        gap: 0.5rem;
+    .overview-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem 0;
     }
     
     .project-section p {
